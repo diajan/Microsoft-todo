@@ -1,14 +1,17 @@
 import React from 'react'
 import Box from '@mui/material/Box'
+import {useStyles} from 'tools/styles/main.style'
 
 export default function Main() {
+  const classes = useStyles()
+
   return (
     <Box
-      style={{ backgroundColor: 'red' }}
+      className={classes.root}
       component='main'
-      sx={{ flexGrow: 1, p: 3 }}
+      sx={{ flexGrow: 1, p: 3 , backgroundColor:'white.light'}}
     >
-      <DrawerHeader />
+      dsald
     </Box>
   )
 }
