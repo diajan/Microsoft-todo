@@ -4,12 +4,12 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 
-export default function ListItem({ title, icon, key, ...props }) {
+export default function ListItem({ title, subtitle, icon, key, ...props }) {
   return (
     <MUIListItem key={key} {...props}>
-      <ListItemButton>
+      <ListItemButton className='list-item-button'>
         <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={title} />
+        <ListItemText primary={title} secondary={subtitle} />
       </ListItemButton>
     </MUIListItem>
   )

@@ -9,7 +9,7 @@ export default function Main() {
     <Box
       className={classes.root}
       component='main'
-      sx={{ flexGrow: 1, p: 3 , backgroundColor:'white.light'}}
+      sx={{ flexGrow: 1, p: 3 , backgroundColor:'public.light'}}
     >
       dsald
     </Box>

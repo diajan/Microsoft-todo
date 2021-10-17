@@ -1,21 +1,31 @@
-import Box from '@mui/material/Box'
+import { useState } from 'react'
+import Drawer from '@mui/material/Drawer'
+import Button from '@mui/material/Button'
+import MenuIcon from '@mui/icons-material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
 import Divider from '@mui/material/Divider'
 import Stack from '@mui/material/Stack'
-import SearchIcon from '@mui/icons-material/Search'
 import ListItem from 'components/utils/ListItem'
-import BurgerMenu from 'components/generic/BurgerMenu'
 import { useStyles } from 'tools/styles/menu.style'
 import items from 'tools/data/menuItem'
 import user from 'tools/data/user'
 
-export default function Menu() {
+export default function BurgerMenu() {
   const classes = useStyles()
+  const [open, setOpen] = useState(false)
+  const toggleDrawer = e => setOpen(!open)
 
   return (
     <>
-      <Box
-        className={classes.root}
-        sx={{ display: { xs: 'none', md: 'block' } }}
+      <Button className={classes.menu} onClick={toggleDrawer}>
+        <MenuIcon />
+      </Button>
+      <Drawer
+        className={classes.drawer}
+        classes={{ paper: classes.drawerPaper }}
+        anchor='left'
+        open={open}
+        onClose={toggleDrawer}
       >
         <Stack direction='row' alignItems='center'>
           <ListItem
@@ -36,14 +46,7 @@ export default function Menu() {
           />
         ))}
         <Divider />
-      </Box>
-
-      <Box
-        display={{ sm: 'block', md: 'none' }}
-        className={classes.hamburgerMenu}
-      >
-        <BurgerMenu />
-      </Box>
+      </Drawer>
     </>
   )
 }
