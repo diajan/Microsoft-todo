@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Menu from 'components/generic/Menu'
@@ -9,16 +10,23 @@ import 'assets/css/main.css'
 
 function App() {
   return (
-    <ThemeProvider theme={color1}>
-      <Box>
-        <Grid container direction={{ xs: 'column', md: 'row' }} wrap='nowrap'>
-          <Menu />
-          <Grid item xs md>
-            <Main/>
+    <Router>
+      <ThemeProvider theme={color2}>
+        <Box>
+          <Grid container direction={{ xs: 'column', md: 'row' }} wrap='nowrap'>
+            <Menu />
+            <Grid item xs md>
+              <Switch>
+                <Route path='/important' exact component={Main} />
+                <Route path='/tasks' exact component={Main} />
+                <Route path='/planned' exact component={Main} />
+                <Route path='/'  component={Main} />
+              </Switch>
+            </Grid>
           </Grid>
-        </Grid>
-      </Box>
-    </ThemeProvider>
+        </Box>
+      </ThemeProvider>
+    </Router>
   )
 }
 

@@ -1,36 +1,35 @@
 import { useSelector } from 'react-redux'
-import React from 'react'
+import { useLocation } from 'react-router-dom'
 import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import Input from 'components/utils/Input'
 import { useStyles } from 'tools/styles/generic/main.style'
-import { getNowDate } from 'tools/other/time'
+import { getNowDate, capitalize } from 'tools/other/functions'
 import bg from 'tools/themes/background'
 
 export default function Main() {
-  const selectMenu = useSelector(s => s.selectMenu)
   const classes = useStyles()
+  const selectMenu = useSelector(s => s.selectMenu)
+  const { pathname } = useLocation()
+  const title = pathname.slice(1)
 
   return (
-    <Box className={classes.root} component='main' sx={{ height: 'auto' }}>
-      <Card className={classes.bg}>
-        <CardMedia
-          sx={{
-            width: { xs: 'auto', lg: '100%' },
-          }}
-          component='img'
-          image={bg[`bg${selectMenu || 1}`]}
-          alt='bitch'
-        />
-      </Card>
+    <Box className={classes.root} component='main'>
       <Box
         className={classes.container}
-        sx={{ padding: { xs: '5rem 2rem 0 ', md: '2rem 2rem 0 ' } }}
+        sx={{
+          padding: { xs: '5rem 2rem 0 ', md: '2rem 2rem 0 ' },
+          backgroundImage: `url(${bg[`bg${selectMenu}`]})`,
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+        }}
       >
         <Box className={classes.title}>
-          <Typography variant='h4' component='div' children='My day' />
+          <Typography
+            variant='h4'
+            component='div'
+            children={capitalize(title) || 'My day'}
+          />
           <Typography
             variant='subtitle1'
             gutterBottom
@@ -38,8 +37,7 @@ export default function Main() {
             children={getNowDate()}
           />
         </Box>
-
-        <Input />
+        <Input placeholder='Add Todo' />
       </Box>
     </Box>
   )

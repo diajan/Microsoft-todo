@@ -13,6 +13,11 @@ export const useStyles = makeStyles(({ palette, spacing }) => ({
   list: {
     color: palette.grey[800],
     padding: '8px 0 8px 5px',
+    '& a': {
+      color: palette.grey[800],
+      textDecoration:'none',
+      padding: '8px 0 8px 5px',
+    },
     '& svg': {
       color: palette.info.main,
     },

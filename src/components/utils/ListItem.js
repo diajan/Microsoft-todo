@@ -4,21 +4,31 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import { setSelectMenu } from 'actions/menu'
+import { Link, useHistory, Redirect } from 'react-router-dom'
 
-export default function ListItem({ title, subtitle, icon, keys, ...props }) {
+export default function ListItem({
+  title,
+  subtitle,
+  icon,
+  keys,
+  link,
+  ...props
+}) {
+  const his = useHistory()
   const dispatch = useDispatch()
   const selectMenu = useSelector(s => s.selectMenu)
-
+  const d = useSelector(s => s)
+  console.log(d)
   const handleSelect = e => {
     dispatch(setSelectMenu(+keys))
   }
 
-  console.log('render')
   return (
     <MUIListItem key={keys} {...props}>
       <ListItemButton
+        onClick={() => his.push(link)}
         onFocus={handleSelect}
-        selected={selectMenu===keys}
+        selected={selectMenu === keys}
         className='list-item-button'
       >
         <ListItemIcon>{icon}</ListItemIcon>
