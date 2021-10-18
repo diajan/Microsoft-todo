@@ -6,14 +6,15 @@ import { ThemeProvider } from '@mui/styles'
 import { color1, color2 } from 'tools/themes/provider'
 
 import 'assets/css/main.css'
+
 function App() {
   return (
     <ThemeProvider theme={color1}>
       <Box>
-        <Grid container direction={{ sm: 'column', md: 'row' }}>
+        <Grid container direction={{ xs: 'column', md: 'row' }} wrap='nowrap'>
           <Menu />
-          <Grid item xs sm md>
-            <Main />
+          <Grid item xs md>
+            <Main/>
           </Grid>
         </Grid>
       </Box>

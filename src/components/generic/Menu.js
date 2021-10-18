@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack'
 import SearchIcon from '@mui/icons-material/Search'
 import ListItem from 'components/utils/ListItem'
 import BurgerMenu from 'components/generic/BurgerMenu'
-import { useStyles } from 'tools/styles/menu.style'
+import { useStyles } from 'tools/styles/generic/menu.style'
 import items from 'tools/data/menuItem'
 import user from 'tools/data/user'
 
@@ -19,10 +19,12 @@ export default function Menu() {
       >
         <Stack direction='row' alignItems='center'>
           <ListItem
+            onClick={() => window.location.replace(`https://${user.link}`)}
             className={`${classes.list} ${classes.user}`}
             title={user.fullname}
             subtitle={user.link}
             icon={user.avatar}
+            keys='user'
           />
           <SearchIcon className={classes.search} />
         </Stack>
@@ -32,14 +34,14 @@ export default function Menu() {
             className={classes.list}
             title={title}
             icon={icon}
-            key={key}
+            keys={key}
           />
         ))}
         <Divider />
       </Box>
 
       <Box
-        display={{ sm: 'block', md: 'none' }}
+        display={{ xs: 'block', md: 'none' }}
         className={classes.hamburgerMenu}
       >
         <BurgerMenu />
