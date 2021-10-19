@@ -3,7 +3,7 @@ import MUIListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
-import { setSelectMenu } from 'actions/menu'
+import { setSelectMenu } from 'redux/actions/menu'
 import { Link, useHistory, Redirect } from 'react-router-dom'
 
 export default function ListItem({
@@ -17,8 +17,7 @@ export default function ListItem({
   const his = useHistory()
   const dispatch = useDispatch()
   const selectMenu = useSelector(s => s.selectMenu)
-  const d = useSelector(s => s)
-  console.log(d)
+
   const handleSelect = e => {
     dispatch(setSelectMenu(+keys))
   }

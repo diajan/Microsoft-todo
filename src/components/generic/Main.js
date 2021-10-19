@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Input from 'components/utils/Input'
+import Theme from 'components/utils/Theme'
 import { useStyles } from 'tools/styles/generic/main.style'
 import { getNowDate, capitalize } from 'tools/other/functions'
 import bg from 'tools/themes/background'
@@ -37,6 +38,7 @@ export default function Main() {
             children={getNowDate()}
           />
         </Box>
+        <Theme />
         <Input placeholder='Add Todo' />
       </Box>
     </Box>
