@@ -7,12 +7,16 @@ import Theme from 'components/utils/Theme'
 import { useStyles } from 'tools/styles/generic/main.style'
 import { getNowDate, capitalize } from 'tools/other/functions'
 import bg from 'tools/themes/background'
+import Todo from 'components/utils/Todo'
+import { useForceUpdate } from 'tools/other/customHook'
 
 export default function Main() {
+  const forceUpdate = useForceUpdate()
   const classes = useStyles()
   const selectMenu = useSelector(s => s.selectMenu)
   const { pathname } = useLocation()
   const title = pathname.slice(1)
+  const todos = useSelector(s => s.todos[title || 'myday'])
 
   return (
     <Box className={classes.root} component='main'>
@@ -38,8 +42,16 @@ export default function Main() {
             children={getNowDate()}
           />
         </Box>
+
         <Theme />
-        <Input placeholder='Add Todo' />
+
+        <div style={{ height: '65vh', overflowY: 'auto', overflowX: 'hidden' }}>
+          {todos?.map(({ title, key }) => (
+            <Todo title={title} key={key} />
+          ))}
+        </div>
+
+        <Input renderParent={forceUpdate} placeholder='Add Todo' />
       </Box>
     </Box>
   )
