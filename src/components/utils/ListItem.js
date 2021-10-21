@@ -4,7 +4,7 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import { setSelectMenu } from 'redux/actions/menu'
-import { Link, useHistory, Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export default function ListItem({
   title,

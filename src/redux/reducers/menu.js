@@ -1,7 +1,9 @@
-export function selectMenu(state = 1, { type, payload }) {
+import { setSelectMenuStorage, getLocalStorage } from 'tools/other/localstorage'
+
+export function selectMenu(state = getLocalStorage('currentMenu'),{ type, payload }) {
   switch (type) {
     case 'SELECT_MENU':
-      return payload
+      return setSelectMenuStorage(payload)
 
     default:
       return state

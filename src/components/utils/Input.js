@@ -7,25 +7,23 @@ import DirectionsIcon from '@mui/icons-material/Directions'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setTodo } from 'actions/todo'
-import { useLocation } from 'react-router'
+import { getUri } from 'tools/other/functions'
 
 export default function Input({ placeholder, renderParent }) {
   const { root } = useStyles()
-  const [value, setValue] = useState()
+  const [title, setTitle] = useState()
   const dispatch = useDispatch()
-
-  const { pathname } = useLocation()
-  const uri = pathname.slice(1)
+  const uri = getUri()
 
   const handleSubmit = e => {
     e.preventDefault()
     renderParent()
-    value && dispatch(setTodo(uri || 'myday', value))
-    setValue('')
+    title && dispatch(setTodo(uri, title))
+    setTitle('')
   }
 
   const handleInput = e => {
-    setValue(e.target.value)
+    setTitle(e.target.value)
   }
 
   return (
@@ -42,7 +40,7 @@ export default function Input({ placeholder, renderParent }) {
       </IconButton>
       <InputBase
         onChange={handleInput}
-        value={value}
+        value={title}
         sx={{ ml: 1, flex: 1 }}
         placeholder={placeholder}
       />

@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Input from 'components/utils/Input'
@@ -10,13 +9,13 @@ import bg from 'tools/themes/background'
 import Todo from 'components/utils/Todo'
 import { useForceUpdate } from 'tools/other/customHook'
 
-export default function Main() {
+export default function Main({ uri }) {
   const forceUpdate = useForceUpdate()
   const classes = useStyles()
   const selectMenu = useSelector(s => s.selectMenu)
-  const { pathname } = useLocation()
-  const title = pathname.slice(1)
-  const todos = useSelector(s => s.todos[title || 'myday'])
+  const todos = useSelector(s =>
+    s.todos.filter(todo => todo.uri === uri && todo.done === false)
+  )
 
   return (
     <Box className={classes.root} component='main'>
@@ -30,11 +29,7 @@ export default function Main() {
         }}
       >
         <Box className={classes.title}>
-          <Typography
-            variant='h4'
-            component='div'
-            children={capitalize(title) || 'My day'}
-          />
+          <Typography variant='h4' component='div' children={capitalize(uri)} />
           <Typography
             variant='subtitle1'
             gutterBottom
@@ -46,11 +41,10 @@ export default function Main() {
         <Theme />
 
         <div style={{ height: '65vh', overflowY: 'auto', overflowX: 'hidden' }}>
-          {todos?.map(({ title, key }) => (
-            <Todo title={title} key={key} />
+          {todos?.map(({ title, id }) => (
+            <Todo renderParent={forceUpdate} title={title} id={id} />
           ))}
         </div>
-
         <Input renderParent={forceUpdate} placeholder='Add Todo' />
       </Box>
     </Box>

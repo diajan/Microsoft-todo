@@ -1,13 +1,26 @@
-import { setStateUsingKeys } from 'tools/other/functions'
-import { initialStorage } from 'tools/other/localstorage'
+import {
+  initialTodoStorage,
+  setTodoStorage,
+  editTodoStorage,
+  removeTodoStorage,
+  doneTodoStorage,
+} from 'tools/other/localstorage'
 
-const initialState = initialStorage() 
+const initialState = initialTodoStorage()
 
 export function todos(state = initialState, { type, payload }) {
   switch (type) {
     case 'ADD_TODO':
-      return setStateUsingKeys(state, payload.uri, payload.value)
+      return setTodoStorage(state, payload)
 
+    case 'EDIT_TODO':
+      return editTodoStorage(state, payload)
+
+    case 'REMOVE_TODO':
+      return removeTodoStorage(state, payload)
+
+    case 'DONE_TODO':
+      return doneTodoStorage(state, payload)
     default:
       return state
   }

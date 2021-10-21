@@ -4,7 +4,7 @@ import c2 from './colors/color2'
 import c3 from './colors/color3'
 import c4 from './colors/color4'
 
-function CreateColorTheme(color, defualt) {
+function CreateColorTheme(color) {
   return createTheme({
     palette: {
       primary: {
@@ -33,5 +33,3 @@ export const color2 = new CreateColorTheme(c2)
 export const color3 = new CreateColorTheme(c3)
 
 export const color4 = new CreateColorTheme(c4)
-
-

@@ -19,10 +19,22 @@ function App() {
             <Menu />
             <Grid item xs md>
               <Switch>
-                <Route path='/important' exact component={Main} />
-                <Route path='/tasks' exact component={Main} />
-                <Route path='/planned' exact component={Main} />
-                <Route path='/' component={Main} />
+                <Route
+                  path='/important'
+                  exact
+                  render={() => <Main uri='important' />}
+                />
+                <Route
+                  path='/tasks'
+                  exact
+                  render={() => <Main uri='tasks' />}
+                />
+                <Route
+                  path='/planned'
+                  exact
+                  render={() => <Main uri='planned' />}
+                />
+                <Route path='/' render={() => <Main uri='myday' />} />
               </Switch>
             </Grid>
           </Grid>
