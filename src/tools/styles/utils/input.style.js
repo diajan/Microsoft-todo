@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles'
 
 export const useStyles = makeStyles(({ palette }) => {
-  return ({
+  return {
     root: {
       display: 'flex',
       alignItems: 'center',
@@ -12,5 +12,5 @@ export const useStyles = makeStyles(({ palette }) => {
         color: palette.public.light,
       },
     },
-  })
+  }
 })

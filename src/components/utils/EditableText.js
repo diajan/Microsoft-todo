@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import EditIcon from '@mui/icons-material/Edit'
 import TextField from '@mui/material/TextField'
-import { editTodo } from 'actions/todo'
+import { editTodo } from 'redux/actions/todo'
 import { useDispatch } from 'react-redux'
 
-export default function EditableTexts({ title, id }) {
+export default function EditableText({ title, id }) {
   const [input, setInput] = useState(false)
   let [text, setText] = useState(title)
 
@@ -23,6 +23,7 @@ export default function EditableTexts({ title, id }) {
 
   return (
     <div
+      data-testid='parent'
       style={{
         display: 'flex',
         width: '-webkit-fill-available',
@@ -31,6 +32,7 @@ export default function EditableTexts({ title, id }) {
     >
       {input ? (
         <TextField
+          data-testid='input'
           id='standard-basic'
           variant='standard'
           value={text}
@@ -42,7 +44,7 @@ export default function EditableTexts({ title, id }) {
       ) : (
         <span>{text}</span>
       )}
-      <EditIcon id='info' onClick={changeStatusInput} />
+      <EditIcon data-testid='edit-btn' id='info' onClick={changeStatusInput} />
     </div>
   )
 }

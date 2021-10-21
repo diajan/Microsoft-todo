@@ -25,10 +25,11 @@ export default function MenuItems() {
 
       {items.map(({ title, icon, key, link }) => (
         <ListItem
+          key={key}
           className={classes.list}
           title={title}
           icon={icon}
-          keys={key}
+          id={key}
           link={link}
         />
       ))}

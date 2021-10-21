@@ -10,7 +10,7 @@ export default function ListItem({
   title,
   subtitle,
   icon,
-  keys,
+  id,
   link,
   ...props
 }) {
@@ -19,15 +19,15 @@ export default function ListItem({
   const selectMenu = useSelector(s => s.selectMenu)
 
   const handleSelect = e => {
-    dispatch(setSelectMenu(+keys))
+    dispatch(setSelectMenu(+id))
   }
 
   return (
-    <MUIListItem key={keys} {...props}>
+    <MUIListItem key={id} {...props}>
       <ListItemButton
-        onClick={() => his.push(link)}
         onFocus={handleSelect}
-        selected={selectMenu === keys}
+        onClick={() => his.push(link)}
+        selected={selectMenu === id}
         className='list-item-button'
       >
         <ListItemIcon>{icon}</ListItemIcon>

@@ -8,14 +8,16 @@ import { getNowDate, capitalize } from 'tools/other/functions'
 import bg from 'tools/themes/background'
 import Todo from 'components/utils/Todo'
 import { useForceUpdate } from 'tools/other/customHook'
+import Popper from 'components/utils/Popper'
 
 export default function Main({ uri }) {
   const forceUpdate = useForceUpdate()
   const classes = useStyles()
   const selectMenu = useSelector(s => s.selectMenu)
-  const todos = useSelector(s =>
-    s.todos.filter(todo => todo.uri === uri && todo.done === false)
-  )
+
+  const todos = useSelector(s => s.todos.filter(todo => todo.uri === uri))
+  const done = todos?.filter(todo => todo.done)
+  const undone = todos?.filter(todo => !todo.done)
 
   return (
     <Box className={classes.root} component='main'>
@@ -40,11 +42,30 @@ export default function Main({ uri }) {
 
         <Theme />
 
-        <div style={{ height: '65vh', overflowY: 'auto', overflowX: 'hidden' }}>
-          {todos?.map(({ title, id }) => (
-            <Todo renderParent={forceUpdate} title={title} id={id} />
+        <div style={{ height: '55vh', overflowY: 'auto', overflowX: 'hidden' }}>
+          {undone.map(({ title, id }) => (
+            <Todo key={id} renderParent={forceUpdate} title={title} id={id} />
           ))}
         </div>
+
+        {!!done.length && (
+          <Popper>
+            <div
+              style={{ height: '20vh', overflowY: 'auto', overflowX: 'hidden' }}
+            >
+              {done.map(({ title, id }) => (
+                <Todo
+                  key={id}
+                  renderParent={forceUpdate}
+                  title={title}
+                  id={id}
+                  noEdit
+                />
+              ))}
+            </div>
+          </Popper>
+        )}
+
         <Input renderParent={forceUpdate} placeholder='Add Todo' />
       </Box>
     </Box>

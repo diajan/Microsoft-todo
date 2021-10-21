@@ -19,6 +19,9 @@ export const useStyles = makeStyles(({ palette }) => ({
     '& #success:hover': {
       color: palette.success.main,
     },
+    '& #unsuccess:hover': {
+      color: palette.error.dark,
+    },
     '& #error:hover': {
       color: palette.error.main,
     },

@@ -6,10 +6,10 @@ import Stack from '@mui/material/Stack'
 import Avatar from '@mui/material/Avatar'
 import { useDispatch } from 'react-redux'
 import { useStyles } from 'tools/styles/utils/theme.style'
-import { setColors, setCurrentColor } from 'actions/colors'
+import { setColors, setCurrentColor } from 'redux/actions/colors'
 import * as colorsTheme from 'tools/themes/provider'
 
-export default function BasicPopover() {
+export default function Theme() {
   const dispatch = useDispatch()
   const { root, btn } = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
@@ -56,7 +56,7 @@ export default function BasicPopover() {
       >
         <Stack direction='row' spacing={1} sx={{ p: 1 }}>
           {Object.keys(colorsTheme).map(color => (
-            <Button onClick={() => handleChangeColor(color)}>
+            <Button key='1' onClick={() => handleChangeColor(color)}>
               <Avatar
                 sx={{ bgcolor: colorsTheme[color].palette.primary.main }}
                 children=''
